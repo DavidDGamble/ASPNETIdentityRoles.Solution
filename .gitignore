@@ -1,0 +1,8 @@
+package-lock.json
+appsettings.json
+package.json
+node_modules
+index.js
+.vscode
+obj 
+bin
