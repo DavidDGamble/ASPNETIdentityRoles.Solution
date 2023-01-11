@@ -3,6 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using IdentityRoles.Models;
 
+// vvvvv---Add code above route methods in controllers---vvvvv
+// [Authorize(Roles = "rolename1", "rollname2")]
+
+// vvvvv---Use in HTML---vvvvv
+// @if (User.IsInRole("rolename"))
+
 namespace IdentityRoles.Controllers
 {
   public class RoleController : Controller

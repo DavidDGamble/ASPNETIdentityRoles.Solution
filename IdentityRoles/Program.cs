@@ -24,6 +24,8 @@ namespace IdentityRoles
                       );
 
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                // Needed for roles
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityRolesContext>()
                 .AddDefaultTokenProviders();
 
