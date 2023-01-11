@@ -17,11 +17,12 @@
         <tr>
             <td>@role.Id</td>
             <td>@role.Name</td>
-            <td>No members</td>
-            @* @if (ViewBag.members.Count != 0)
+            @if (ViewBag.members.Count != 0)
             {
-                <td>@(string.Join(",", ViewBag.members))</td>
-            } *@
+                <td>@(string.Join(",", ViewBag.members[role.Id]))</td>
+            } else {
+                <td>No members</td>
+            }
             @* <td i-role="@role.Id"></td> *@
             <td><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@role.Id">Update</a></td>
             <td>
