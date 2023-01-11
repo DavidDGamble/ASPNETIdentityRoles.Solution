@@ -17,19 +17,19 @@ namespace IdentityRoles.Controllers
 
     public async Task<ActionResult> Index() 
     {
-      // Dictionary<string, List<string>> members = new Dictionary<string, List<string>>{};
-      // foreach (IdentityRole role in roleManager.Roles)
-      // {
-      //   string newRoleId = role.Id;
-      //   IList<ApplicationUser> validMembers =  await userManager.GetUsersInRoleAsync(role.Name);
-      //   List<string> memberNames = new List<string>{};
-      //   foreach (ApplicationUser memb in validMembers)
-      //   {
-      //     memberNames.Add(memb.UserName);
-      //   }
-      //   members.Add(newRoleId, memberNames);
-      // }
-      // ViewBag.members = members;
+      Dictionary<string, List<string>> members = new Dictionary<string, List<string>>{};
+      foreach (IdentityRole role in roleManager.Roles.ToList())
+      {
+        string newRoleId = role.Id;
+        IList<ApplicationUser> validMembers =  await userManager.GetUsersInRoleAsync(role.Name);
+        List<string> memberNames = new List<string>{};
+        foreach (ApplicationUser memb in validMembers.ToList())
+        {
+          memberNames.Add(memb.UserName);
+        }
+        members.Add(newRoleId, memberNames);
+      }
+      ViewBag.members = members;
       return View(roleManager.Roles);
     }
 
