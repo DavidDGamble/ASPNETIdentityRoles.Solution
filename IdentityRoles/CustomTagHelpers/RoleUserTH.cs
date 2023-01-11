@@ -25,10 +25,16 @@ namespace IdentityRoles.CustomTagHelpers
             IdentityRole role = await roleManager.FindByIdAsync(Role);
             if (role != null)
             {
-                foreach (var user in userManager.Users)
+                IList<ApplicationUser> members = await userManager.GetUsersInRoleAsync(role.Name);
+                if (members != null)
                 {
-                    if (user != null && await userManager.IsInRoleAsync(user, role.Name))
+
+                    foreach (ApplicationUser user in members)
+                    {
+                        // if (user != null && await userManager.IsInRoleAsync(user, role.Name))
+                        //     names.Add(user.UserName);
                         names.Add(user.UserName);
+                    }
                 }
             }
             output.Content.SetContent(names.Count == 0 ? "No Users" : string.Join(", ", names));

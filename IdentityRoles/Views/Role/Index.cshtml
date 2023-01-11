@@ -1,4 +1,7 @@
 @using Microsoft.AspNetCore.Identity;
+@* @addTagHelper Identity.CustomTagHelpers.*, Identity *@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@* @addTagHelper IdentityRoles.CustomTagHelpers.*, IdentityRoles *@
 @model IEnumerable<IdentityRole>
 @{
     ViewData["Title"] = "ROLES";
@@ -14,7 +17,12 @@
         <tr>
             <td>@role.Id</td>
             <td>@role.Name</td>
-            <td i-role="@role.Id"></td>
+            <td>No members</td>
+            @* @if (ViewBag.members.Count != 0)
+            {
+                <td>@(string.Join(",", ViewBag.members))</td>
+            } *@
+            @* <td i-role="@role.Id"></td> *@
             <td><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@role.Id">Update</a></td>
             <td>
                 <form asp-action="Delete" asp-route-id="@role.Id" method="post">
